@@ -4,7 +4,9 @@ const qrcode = require('qrcode-terminal');
 const generateReply = require('./handlers/messageHandler');
 
 const client = new Client({
-  authStrategy: new LocalAuth(),
+  authStrategy: new LocalAuth({
+    dataPath: process.env.SESSION_PATH || './auth_data',
+  }),
   puppeteer: {
     headless: true,
     args: ['--no-sandbox'],
